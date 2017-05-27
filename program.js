@@ -1,14 +1,4 @@
-function init(){
-    var inputsArray = process.argv; 
-    var result=0;
-    for(var i = 2; i< inputsArray.length;i++){
-        if(isNumber(inputsArray[i])){
-            result+=Number(inputsArray[i]);
-        }
-    }
-    console.log(result);
-}
-function isNumber(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
-}
-init();
+var fs = require('fs');
+//var buffer = fs.readFileSync(process.argv[2], 'utf8');
+var buffer = fs.readFileSync(process.argv[2]);
+console.log(buffer.toString().split('\n').length-1);
