@@ -1,12 +1,6 @@
-var mymodule = require("./mymodule");
-var arguments = process.argv;
-function callBack(err,data){
-    if(err){
-        console.log("An error has ocurred" + err);
-    }else{        
-        data.forEach(function(item){
-            console.log(item);  
-        });           
-    }
-}
-mymodule(arguments[2],arguments[3],callBack);
+var http = require('http')
+http.get(process.argv[2], function (response) {
+    response.setEncoding('utf8')
+    response.on('data', console.log);
+    response.on('error', console.error);
+}).on('error', console.error)
