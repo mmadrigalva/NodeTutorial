@@ -1,24 +1,12 @@
-var fs = require('fs');
-var pth = require('path');
+var mymodule = require("./mymodule");
 var arguments = process.argv;
-var ext = arguments[3];
-fs.readdir(arguments[2],function callBack(err,list){
-    for(var i = 0; i<list.length;i++)
-        if(pth.extname(list[i])==("."+ext))
-            console.log(list[i]);
-});
-
-// var fs = require('fs')
-// var path = require('path')
-
-// var folder = process.argv[2]
-// var ext = '.' + process.argv[3]
-
-// fs.readdir(folder, function (err, files) {
-// if (err) return console.error(err)
-// files.forEach(function (file) {
-// if (path.extname(file) === ext) {
-// console.log(file)
-// }
-// })
-// })
+function callBack(err,data){
+    if(err){
+        console.log("An error has ocurred" + err);
+    }else{        
+        data.forEach(function(item){
+            console.log(item);  
+        });           
+    }
+}
+mymodule(arguments[2],arguments[3],callBack);
