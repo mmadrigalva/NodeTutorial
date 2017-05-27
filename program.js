@@ -1,15 +1,24 @@
 var fs = require('fs');
-fs.readFile(process.argv[2], 'utf8',function callBack(err,buffer){
-    console.log(buffer.toString().split('\n').length-1);
+var pth = require('path');
+var arguments = process.argv;
+var ext = arguments[3];
+fs.readdir(arguments[2],function callBack(err,list){
+    for(var i = 0; i<list.length;i++)
+        if(pth.extname(list[i])==("."+ext))
+            console.log(list[i]);
 });
-// var fs = require('fs')
-// var file = process.argv[2]
 
-// fs.readFile(file, function (err, contents) {
-//     if (err) {
-//     return console.log(err)
-//     }
-//     // fs.readFile(file, 'utf8', callback) can also be used
-//     var lines = contents.toString().split('\n').length - 1
-//     console.log(lines)
+// var fs = require('fs')
+// var path = require('path')
+
+// var folder = process.argv[2]
+// var ext = '.' + process.argv[3]
+
+// fs.readdir(folder, function (err, files) {
+// if (err) return console.error(err)
+// files.forEach(function (file) {
+// if (path.extname(file) === ext) {
+// console.log(file)
+// }
+// })
 // })
